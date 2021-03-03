@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Java类相关的笔记，面向对象基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java学习笔记（二）">
+<meta property="og:url" content="http://example.com/2020/12/07/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java类相关的笔记，面向对象基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-09T07:37:38.490Z">
+<meta property="article:author" content="知北">
+<meta property="article:tag" content="Java学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/12/07/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java学习笔记（二） | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-algorithm">
+
+    <a href="/categories/algorithm/" rel="section"><i class="fa fa-bookmark fa-fw"></i>算法学习</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="知北">
+      <meta itemprop="description" content="于浩歌狂热之际中寒；于天上看见深渊。于一切眼中看见无所有；于无所希望中得救。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java学习笔记（二）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-07 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-07T00:00:00+08:00">2020-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-09 15:37:38" itemprop="dateModified" datetime="2020-12-09T15:37:38+08:00">2020-12-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Java类相关的笔记，面向对象基础</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><h5 id="可变参数的设置，也可使用传入数组参数"><a href="#可变参数的设置，也可使用传入数组参数" class="headerlink" title="可变参数的设置，也可使用传入数组参数"></a>可变参数的设置，也可使用传入数组参数</h5><pre><code>但使用的时候不一样
+可变参数更加简单一点
+引用方法
+</code></pre>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">可变 setName(<span class="string">&quot;str&quot;</span>,<span class="string">&quot;str&quot;</span>)</span><br><span class="line">数组参数 setName(<span class="keyword">new</span> <span class="keyword">String</span>[] &#123;<span class="string">&quot;str&quot;</span>,<span class="string">&quot;str&quot;</span>&#125;)</span><br><span class="line">*/</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> setName(<span class="keyword">String</span>... names)&#123;</span><br><span class="line">    <span class="keyword">this</span>.names=names;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="引用参数"><a href="#引用参数" class="headerlink" title="引用参数"></a>引用参数</h5><p>传递类似字符串和数组类型的参数是传递引用类型的参数，绑定的是同一个地址，当在主函数改变，可能定义的类里面也会改，<br>但是比如字符串改变</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String Bob=&quot;bob&quot;;</span><br><span class="line">Person bob=new Person();</span><br><span class="line">bob.setName(Bob);</span><br><span class="line">Bob=&quot;jane&quot;;</span><br><span class="line">实际上bob对象的name并不变，因为他的指向地址不变，而Bob字符变量的指向反而改变了</span><br></pre></td></tr></table></figure>
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><p>如果一个类没有定义构造方法，编译器会自动为我们生成一个默认构造方法，它没有参数，也没有执行语句，类似这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构造方法的名称就是类名。构造方法的参数没有限制，在方法内部，也可以编写任意语句。但是，和普通方法相比，构造方法没有返回值（也没有void），调用构造方法，必须用new操作符。要特别注意的是，如果我们自定义了一个构造方法，那么，编译器就不再自动创建默认构造方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public Person(String name, int age) &#123;</span><br><span class="line">       this.name = name;</span><br><span class="line">       this.age = age;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>如果既要能使用带参数的构造方法，又想保留不带参数的构造方法，那么只能把两个构造方法都定义出来：没有在构造方法中初始化字段时，引用类型的字段默认是null，数值类型的字段用默认值，int类型默认值是0，布尔类型默认值是false：<br>也可以对字段直接进行初始化：</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Person &#123;</span><br><span class="line">    <span class="keyword">private</span> String name = <span class="string">&quot;Unamed&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> int age = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>既对字段进行初始化，又在构造方法中对字段进行初始化：</p>
+<p>class Person {<br>    private String name = “Unamed”;<br>    private int age = 10;</p>
+<pre><code>public Person(String name, int age) &#123;
+    this.name = name;
+    this.age = age;
+&#125;
+</code></pre>
+<p>}<br>当我们创建对象的时候，new Person(“Xiao Ming”, 12)得到的对象实例，字段的初始值是啥？</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    private String name = &quot;Unamed&quot;;</span><br><span class="line">    private int age = 10;</span><br><span class="line"></span><br><span class="line">    public Person(String name, int age) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>在Java中，创建对象实例的时候，按照如下顺序进行初始化：</p>
+<p>先初始化字段，例如，int age = 10;表示字段初始化为10，double salary;表示字段默认初始化为0，String name;表示引用类型字段默认初始化为null；</p>
+<p>执行构造方法的代码进行初始化。</p>
+<p>因此，构造方法的代码由于后运行，所以，new Person(“Xiao Ming”, 12)的字段值最终由构造方法的代码确定。</p>
+<p>多个构造方法可以自动匹配，一个构造方法可以调用其他构造方法，这样做的目的是便于代码复用。调用其他构造方法的语法是this(…)：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public Person(String name, int age) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Person(String name) &#123;</span><br><span class="line">        this(name, 18); // 调用另一个构造方法Person(String, int)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Person() &#123;</span><br><span class="line">        this(&quot;Unnamed&quot;); // 调用另一个构造方法Person(String)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h4><p>在一个类中，我们可以定义多个方法。如果有一系列方法，它们的功能都是类似的，只有参数有所不同，那么，可以把这一组方法名做成同名方法。例如，在Hello类中，定义多个hello()方法：这种方法名相同，但各自的参数不同，称为方法重载（Overload）。<br>注意：方法重载的返回值类型通常都是相同的。<br>方法重载的目的是，功能类似的方法使用同一名字，更容易记住，因此，调用起来更简单。</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>例子</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 不要重复name和age字段/方法,</span></span><br><span class="line">    <span class="comment">// 只需要定义新增score字段/方法:</span></span><br><span class="line">    <span class="keyword">private</span> int score;</span><br><span class="line"></span><br><span class="line">    public int getScore() &#123; … &#125;</span><br><span class="line">    public void setScore(int score) &#123; … &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见，通过继承，Student只需要编写额外的功能，不再需要重复代码。</p>
+<p> 注意：子类自动获得了父类的所有字段，严禁定义与父类重名的字段！<br>在OOP的术语中，我们把Person称为超类（super class），父类（parent class），基类（base class），把Student称为子类（subclass），扩展类（extended class）。</p>
+<p>继承有个特点，就是子类无法访问父类的private字段或者private方法。例如，Student类就无法访问Person类的name和age字段：<br>这使得继承的作用被削弱了。为了让子类可以访问父类的字段，我们需要把private改为protected。用protected修饰的字段可以被子类访问：<br>因此，protected关键字可以把字段和方法的访问权限控制在继承树内部，一个protected字段和方法可以被其子类，以及子类的子类所访问，后面我们还会详细讲解。</p>
+<p>super<br>super关键字表示父类（超类）。子类引用父类的字段时，可以用super.fieldName。实际上，这里使用super.name，或者this.name，或者name，效果都是一样的。编译器会自动定位到父类的name字段。</p>
+<p>但是，在某些时候，就必须使用super。我们来看一个例子</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void <span class="selector-tag">main</span>(String<span class="selector-attr">[]</span> args) &#123;</span><br><span class="line">        Student s = new Student(&quot;Xiao Ming&quot;, 12, 89);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person &#123;</span><br><span class="line">    protected String name;</span><br><span class="line">    protected int age;</span><br><span class="line"></span><br><span class="line">    public Person(String name, int age) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Student extends Person &#123;</span><br><span class="line">    protected int score;</span><br><span class="line"></span><br><span class="line">    public Student(String name, int age, int score) &#123;</span><br><span class="line">        this.score = score;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上面的代码，会得到一个编译错误，大意是在Student的构造方法中，无法调用Person的构造方法。</p>
+<p>这是因为在Java中，任何class的构造方法，第一行语句必须是调用父类的构造方法。如果没有明确地调用父类的构造方法，编译器会帮我们自动加一句super();，所以，Student类的构造方法实际上是这样：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Student extends Person &#123;</span><br><span class="line">    protected int score;</span><br><span class="line"></span><br><span class="line">    public Student(String name, int age, int score) &#123;</span><br><span class="line">        super(); // 自动调用父类的构造方法</span><br><span class="line">        this.score = score;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>但是，Person类并没有无参数的构造方法，因此，编译失败。</p>
+<p>解决方法是调用Person类存在的某个构造方法。例如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Student extends Person &#123;</span><br><span class="line">    protected int score;</span><br><span class="line"></span><br><span class="line">    public Student(String name, int age, int score) &#123;</span><br><span class="line">        super(name, age); // 调用父类的构造方法Person(String, int)</span><br><span class="line">        this.score = score;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="阻止继承"><a href="#阻止继承" class="headerlink" title="阻止继承"></a>阻止继承</h5><p>正常情况下，只要某个class没有final修饰符，那么任何类都可以从该class继承。<br>从Java 15开始，允许使用sealed修饰class，并通过permits明确写出能够从该class继承的子类名称。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public sealed class Shape permits Rect, Circle, Triangle &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述Shape类就是一个sealed类，它只允许指定的3个类继承它。如果写：<br>public final class Rect extends Shape {…}<br>是没问题的，因为Rect出现在Shape的permits列表中。但是，如果定义一个Ellipse就会报错：</p>
+<h5 id="向上转型"><a href="#向上转型" class="headerlink" title="向上转型"></a>向上转型</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person p = new Student();</span><br></pre></td></tr></table></figure>
+
+
+<p>测试一下就可以发现，这种指向是允许的！</p>
+<p>这是因为Student继承自Person，因此，它拥有Person的全部功能。Person类型的变量，如果指向Student类型的实例，对它进行操作，是没有问题的！</p>
+<p>这种把一个子类类型安全地变为父类类型的赋值，被称为向上转型（upcasting）。</p>
+<p>向上转型实际上是把一个子类型安全地变为更加抽象的父类型：</p>
+<h5 id="向下转型"><a href="#向下转型" class="headerlink" title="向下转型"></a>向下转型</h5><p>和向上转型相反，如果把一个父类类型强制转型为子类类型，就是向下转型（downcasting）。例如：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person p1 = new Student()<span class="comment">; // upcasting, ok</span></span><br><span class="line">Person p2 = new Person()<span class="comment">;</span></span><br><span class="line">Student s1 = (<span class="name">Student</span>) p1<span class="comment">; // ok</span></span><br><span class="line">Student s2 = (<span class="name">Student</span>) p2<span class="comment">; // runtime error! ClassCastException!</span></span><br></pre></td></tr></table></figure>
+
+
+<p>如果测试上面的代码，可以发现：</p>
+<p>Person类型p1实际指向Student实例，Person类型变量p2实际指向Person实例。在向下转型的时候，把p1转型为Student会成功，因为p1确实指向Student实例，把p2转型为Student会失败，因为p2的实际类型是Person，不能把父类变为子类，因为子类功能比父类多，多的功能无法凭空变出来。</p>
+<p>因此，向下转型很可能会失败。失败的时候，Java虚拟机会报ClassCastException。</p>
+<p>为了避免向下转型出错，Java提供了instanceof操作符，可以先判断一个实例究竟是不是某种类型：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line">System.out.<span class="keyword">println</span>(p <span class="keyword">instanceof</span> Person); <span class="comment">// true</span></span><br><span class="line">System.out.<span class="keyword">println</span>(p <span class="keyword">instanceof</span> Student); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">Student s = <span class="keyword">new</span> Student();</span><br><span class="line">System.out.<span class="keyword">println</span>(s <span class="keyword">instanceof</span> Person); <span class="comment">// true</span></span><br><span class="line">System.out.<span class="keyword">println</span>(s <span class="keyword">instanceof</span> Student); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">Student n = <span class="keyword">null</span>;</span><br><span class="line">System.out.<span class="keyword">println</span>(n <span class="keyword">instanceof</span> Student); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+
+<p>instanceof实际上判断一个变量所指向的实例是否是指定类型，或者这个类型的子类。如果一个引用变量为null，那么对任何instanceof的判断都为false。</p>
+<p>利用instanceof，在向下转型前可以先判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Student();</span><br><span class="line"><span class="keyword">if</span> (p <span class="keyword">instanceof</span> Student) &#123;</span><br><span class="line">    <span class="comment">// 只有判断成功才会向下转型:</span></span><br><span class="line">    Student s = (Student) p; <span class="comment">// 一定会成功</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>从Java 14开始，判断instanceof后，可以直接转型为指定变量，避免再次强制转型。例如，对于以下代码：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Object</span> obj = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (obj <span class="keyword">instanceof</span> <span class="keyword">String</span>) &#123;</span><br><span class="line">    <span class="keyword">String</span> s = (<span class="keyword">String</span>) obj;</span><br><span class="line">    System.out.<span class="built_in">println</span>(s.toUpperCase());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><p>在继承关系中，子类如果定义了一个与父类方法签名完全相同的方法，被称为覆写（Override）。<br>例如，在Person类中，我们定义了run()方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        System.out.println(&quot;Person.run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Student extends Person &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        System.out.println(&quot;Student.run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Student extends Person &#123;</span><br><span class="line">    <span class="comment">// 不是Override，因为参数不同:</span></span><br><span class="line">    public void run(String s) &#123; … &#125;</span><br><span class="line">    <span class="comment">// 不是Override，因为返回值不同:</span></span><br><span class="line">    public int run() &#123; … &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1260455778791232">多态参考理解</a><br>Override和Overload不同的是，如果方法签名如果不同，就是Overload，Overload方法是一个新方法；如果方法签名相同，并且返回值也相同，就是Override。<br> 注意：方法名相同，方法参数相同，但方法返回值不同，也是不同的方法。在Java程序中，出现这种情况，编译器会报错。</p>
+<p> 一个实际类型为Student，引用类型为Person的变量，调用其run()方法，调用的是Person还是Student的run()方法？<br>运行一下上面的代码就可以知道，实际上调用的方法是Student的run()方法。因此可得出结论：<br>Java的实例方法调用是基于运行时的实际类型的动态调用，而非变量的声明类型。<br>这个非常重要的特性在面向对象编程中称之为多态。它的英文拼写非常复杂：Polymorphic。</p>
+<p>利用多态，totalTax()方法只需要和Income打交道，它完全不需要知道Salary和StateCouncilSpecialAllowance的存在，就可以正确计算出总的税。如果我们要新增一种稿费收入，只需要从Income派生，然后正确覆写getTax()方法就可以。把新的类型传入totalTax()，不需要修改任何代码。</p>
+<p>可见，多态具有一个非常强大的功能，就是允许添加更多类型的子类实现功能扩展，却不需要修改基于父类的代码。</p>
+<p>如果一个类不希望任何其他类继承自它，那么可以把这个类本身标记为final。用final修饰的类不能被继承：<br>继承可以允许子类覆写父类的方法。如果一个父类不允许子类对它的某个方法进行覆写，可以把该方法标记为final。用final修饰的方法不能被Override</p>
+<p>对于一个类的实例字段，同样可以用final修饰。用final修饰的字段在初始化后不能被修改。例如：<br>class Person {<br>    public final String name = “Unamed”;<br>}<br>对final字段重新赋值会报错：</p>
+<p>Person p = new Person();<br>p.name = “New Name”; // compile error!<br>可以在构造方法中初始化final字段：</p>
+<p>class Person {<br>    public final String name;<br>    public Person(String name) {<br>        this.name = name;<br>    }<br>}<br>这种方法更为常用，因为可以保证实例一旦创建，其final字段就不可修改。</p>
+<p>final修饰符有多种作用：</p>
+<p>final修饰的方法可以阻止被覆写；</p>
+<p>final修饰的class可以阻止被继承；</p>
+<p>final修饰的field必须在创建对象时初始化，随后不可修改。</p>
+<h4 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h4><p>  如果父类的方法本身不需要实现任何功能，仅仅是为了定义方法签名，目的是让子类去覆写它，那么，可以把父类的方法声明为抽象方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    public abstract void run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把一个方法声明为abstract，表示它是一个抽象方法，本身没有实现任何方法语句。因为这个抽象方法本身是无法执行的，所以，Person类也无法被实例化。编译器会告诉我们，无法编译Person类，因为它包含抽象方法。</p>
+<p>必须把Person类本身也声明为abstract，才能正确编译它：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">abstract class Person &#123;</span><br><span class="line">    public abstract void run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果一个class定义了方法，但没有具体执行代码，这个方法就是抽象方法，抽象方法用abstract修饰。<br>因为无法执行抽象方法，因此这个类也必须申明为抽象类（abstract class）。<br>使用abstract修饰的类就是抽象类。我们无法实例化一个抽象类：<br>无法实例化的抽象类有什么用？<br>因为抽象类本身被设计成只能用于被继承，因此，抽象类可以强迫子类实现其定义的抽象方法，否则编译会报错。因此，抽象方法实际上相当于定义了“规范”。<br>例如，Person类定义了抽象方法run()，那么，在实现子类Student的时候，就必须覆写run()方法：</p>
+<h5 id="面向抽象编程"><a href="#面向抽象编程" class="headerlink" title="面向抽象编程"></a>面向抽象编程</h5><p>当我们定义了抽象类Person，以及具体的Student、Teacher子类的时候，我们可以通过抽象类Person类型去引用具体的子类的实例。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person s = new Student();</span><br><span class="line">Person t = new Teacher()</span><br></pre></td></tr></table></figure>
+<p>这种引用抽象类的好处在于，我们对其进行方法调用，并不关心Person类型变量的具体子类型：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不关心Person变量的具体子类型:</span></span><br><span class="line">s.run();</span><br><span class="line">t.run();</span><br></pre></td></tr></table></figure>
+<p>这种尽量引用高层类型，避免引用实际子类型的方式，称之为面向抽象编程。</p>
+<p>面向抽象编程的本质就是：</p>
+<p>上层代码只定义规范（例如：abstract class Person）；</p>
+<p>不需要子类就可以实现业务逻辑（正常编译）；</p>
+<p>具体的业务逻辑由不同的子类实现，调用者并不关心。</p>
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><p>在抽象类中，抽象方法本质上是定义接口规范：即规定高层类的接口，从而保证所有子类都有相同的接口实现，这样，多态就能发挥出威力。<br>如果一个抽象类没有字段，所有方法全部都是抽象方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abstract class Person &#123;</span><br><span class="line">    public abstract void run();</span><br><span class="line">    public abstract String getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就可以把该抽象类改写为接口：interface。</p>
+<p>在Java中，使用interface可以声明一个接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span><br><span class="line">    void run();</span><br><span class="line">    String getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所谓interface，就是比抽象类还要抽象的纯抽象接口，因为它连字段都不能有。因为接口定义的所有方法默认都是public abstract的，所以这两个修饰符不需要写出来（写不写效果都一样）。<br>当一个具体的class去实现一个interface时，需要使用implements关键字。举个例子：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Student implements Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public Student(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        System.out.println(this.name + &quot; run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return this.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们知道，在Java中，一个类只能继承自另一个类，不能从多个类继承。但是，一个类可以实现多个interface，例如：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Person</span>, <span class="title">Hello</span> </span>&#123; <span class="comment">// 实现了两个interface</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>     abstract class           interface
+</code></pre>
+<p>继承    只能extends一个class    可以implements多个interface<br>字段    可以定义实例字段    不能定义实例字段<br>抽象方法    可以定义抽象方法    可以定义抽象方法<br>非抽象方法    可以定义非抽象方法    可以定义default方法</p>
+<p>接口继承<br>一个interface可以继承自另一个interface。interface继承自interface使用extends，它相当于扩展了接口的方法。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>此时，Person接口继承自Hello接口，因此，Person接口现在实际上有3个抽象方法签名，其中一个来自继承的Hello接口。</p>
+<h5 id="default方法"><a href="#default方法" class="headerlink" title="default方法"></a>default方法</h5><p>在接口中，可以定义default方法。例如，把Person接口的run()方法改为default方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void <span class="selector-tag">main</span>(String<span class="selector-attr">[]</span> args) &#123;</span><br><span class="line">        Person p = new Student(&quot;Xiao Ming&quot;);</span><br><span class="line">        p.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Person &#123;</span><br><span class="line">    String getName();</span><br><span class="line">    default void run() &#123;</span><br><span class="line">        System.out.println(getName() + &quot; run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Student implements Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public Student(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return this.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>实现类可以不必覆写default方法。default方法的目的是，当我们需要给接口新增一个方法时，会涉及到修改全部子类。如果新增的是default方法，那么子类就不必全部修改，只需要在需要覆写的地方去覆写新增方法。</p>
+<p>default方法和抽象类的普通方法是有所不同的。因为interface没有字段，default方法无法访问字段，而抽象类的普通方法可以访问实例字段。</p>
+<h4 id="静态字段和静态方法"><a href="#静态字段和静态方法" class="headerlink" title="静态字段和静态方法"></a>静态字段和静态方法</h4><h5 id="静态字段"><a href="#静态字段" class="headerlink" title="静态字段"></a>静态字段</h5><p>在一个class中定义的字段，我们称之为实例字段。实例字段的特点是，每个实例都有独立的字段，各个实例的同名字段互不影响。<br>还有一种字段，是用static修饰的字段，称为静态字段：static field。<br>实例字段在每个实例中都有自己的一个独立“空间”，但是静态字段只有一个共享“空间”，所有实例都会共享该字段。举个例子：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    public String name;</span><br><span class="line">    public int age;</span><br><span class="line">    <span class="comment">// 定义静态字段number:</span></span><br><span class="line">    public static int number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来看看下面的代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void <span class="selector-tag">main</span>(String<span class="selector-attr">[]</span> args) &#123;</span><br><span class="line">        Person ming = new Person(&quot;Xiao Ming&quot;, 12);</span><br><span class="line">        Person hong = new Person(&quot;Xiao Hong&quot;, 15);</span><br><span class="line">        ming.number = 88;</span><br><span class="line">        System.out.println(hong.number);</span><br><span class="line">        hong.number = 99;</span><br><span class="line">        System.out.println(ming.number);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person &#123;</span><br><span class="line">    public String name;</span><br><span class="line">    public int age;</span><br><span class="line"></span><br><span class="line">    public static int number;</span><br><span class="line"></span><br><span class="line">    public Person(String name, int age) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对于静态字段，无论修改哪个实例的静态字段，效果都是一样的：所有实例的静态字段都被修改了，原因是静态字段并不属于实例：</p>
+<pre><code>    ┌──────────────────┐
+</code></pre>
+<p>ming ──&gt;│Person instance   │<br>        ├──────────────────┤<br>        │name = “Xiao Ming”│<br>        │age = 12          │<br>        │number ───────────┼──┐    ┌─────────────┐<br>        └──────────────────┘  │    │Person class │<br>                              │    ├─────────────┤<br>                              ├───&gt;│number = 99  │<br>        ┌──────────────────┐  │    └─────────────┘<br>hong ──&gt;│Person instance   │  │<br>        ├──────────────────┤  │<br>        │name = “Xiao Hong”│  │<br>        │age = 15          │  │<br>        │number ───────────┼──┘<br>        └──────────────────┘<br>虽然实例可以访问静态字段，但是它们指向的其实都是Person class的静态字段。所以，所有实例共享一个静态字段。</p>
+<p>因此，不推荐用实例变量.静态字段去访问静态字段，因为在Java程序中，实例对象并没有静态字段。在代码中，实例对象能访问静态字段只是因为编译器可以根据实例类型自动转换为类名.静态字段来访问静态对象。</p>
+<p>推荐用类名来访问静态字段。可以把静态字段理解为描述class本身的字段（非实例字段）。对于上面的代码，更好的写法是：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person.<span class="keyword">number</span> = <span class="number">99</span>;</span><br><span class="line">System.<span class="keyword">out</span>.println(Person.<span class="keyword">number</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h5><p>有静态字段，就有静态方法。用static修饰的方法称为静态方法。<br>调用实例方法必须通过一个实例变量，而调用静态方法则不需要实例变量，通过类名就可以调用。静态方法类似其它编程语言的函数。例如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void <span class="selector-tag">main</span>(String<span class="selector-attr">[]</span> args) &#123;</span><br><span class="line">        Person.setNumber(99);</span><br><span class="line">        System.out.println(Person.number);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person &#123;</span><br><span class="line">    public static int number;</span><br><span class="line"></span><br><span class="line">    public static void setNumber(int value) &#123;</span><br><span class="line">        number = value;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>因为静态方法属于class而不属于实例，因此，静态方法内部，无法访问this变量，也无法访问实例字段，它只能访问静态字段。<br>通过实例变量也可以调用静态方法，但这只是编译器自动帮我们把实例改写成类名而已。<br>通常情况下，通过实例变量访问静态字段和静态方法，会得到一个编译警告。<br>静态方法经常用于工具类。例如：<br>Arrays.sort()<br>Math.random()<br>静态方法也经常用于辅助方法。注意到Java程序的入口main()也是静态方法。</p>
+<h5 id="接口的静态字段"><a href="#接口的静态字段" class="headerlink" title="接口的静态字段"></a>接口的静态字段</h5><p>因为interface是一个纯抽象类，所以它不能定义实例字段。但是，interface是可以有静态字段的，并且静态字段必须为final类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MALE = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FEMALE = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>实际上，因为interface的字段只能是public static final类型，所以我们可以把这些修饰符都去掉，上述代码可以简写为：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> Person &#123;</span><br><span class="line">    // 编译器会自动加上<span class="keyword">public</span> statc <span class="keyword">final</span>:</span><br><span class="line">    <span class="built_in">int</span> MALE = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">int</span> FEMALE = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译器会自动把该字段变为public static final类型。</p>
+<h4 id="包"><a href="#包" class="headerlink" title="包"></a>包</h4><p>在Java中，我们使用package来解决名字冲突。</p>
+<p>Java定义了一种名字空间，称之为包：package。一个类总是属于某个包，类名（比如Person）只是一个简写，真正的完整类名是包名.类名。<br>在定义class的时候，我们需要在第一行声明这个class属于哪个包。</p>
+<p>小明的Person.java文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ming; <span class="comment">// 申明包名ming</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Java虚拟机执行的时候，JVM只看完整类名，因此，只要包名不同，类就不同。</p>
+<p>包可以是多层结构，用.隔开。例如：java.util。<br>没有定义包名的class，它使用的是默认包，非常容易引起名字冲突，因此，不推荐不写包名的做法。</p>
+<p>我们还需要按照包结构把上面的Java文件组织起来。假设以package_sample作为根目录，src作为源码目录，那么所有文件结构就是：</p>
+<p>package_sample<br>└─ src<br>    ├─ hong<br>    │  └─ Person.java<br>    │  ming<br>    │  └─ Person.java<br>    └─ mr<br>       └─ jun<br>          └─ Arrays.java<br>即所有Java文件对应的目录层次要和包的层次一致。</p>
+<p>编译后的.class文件也需要按照包结构存放。如果使用IDE，把编译后的.class文件放到bin目录下，那么，编译的文件结构就是：</p>
+<p>package_sample<br>└─ bin<br>   ├─ hong<br>   │  └─ Person.class<br>   │  ming<br>   │  └─ Person.class<br>   └─ mr<br>      └─ jun<br>         └─ Arrays.class</p>
+<h5 id="包作用域"><a href="#包作用域" class="headerlink" title="包作用域"></a>包作用域</h5><p>位于同一个包的类，可以访问包作用域的字段和方法。不用public、protected、private修饰的字段和方法就是包作用域</p>
+<h5 id="import"><a href="#import" class="headerlink" title="import"></a>import</h5><p>在一个class中，我们总会引用其他的class。例如，小明的ming.Person类，如果要引用小军的mr.jun.Arrays类，他有三种写法：</p>
+<p>第一种，直接写出完整类名，例如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package ming;</span><br><span class="line"></span><br><span class="line">public class Person &#123;</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        mr.jun.Arrays arrays = new mr.jun.Arrays();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种写法是用import语句，导入小军的Arrays，然后写简单类名</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Person.java</span></span><br><span class="line">package ming;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入完整类名:</span></span><br><span class="line">import mr.jun.Arrays;</span><br><span class="line"></span><br><span class="line">public class Person &#123;</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        Arrays arrays = new Arrays();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包<br>阅读: 3827313<br>在前面的代码中，我们把类和接口命名为Person、Student、Hello等简单名字。</p>
+<p>在现实中，如果小明写了一个Person类，小红也写了一个Person类，现在，小白既想用小明的Person，也想用小红的Person，怎么办？</p>
+<p>如果小军写了一个Arrays类，恰好JDK也自带了一个Arrays类，如何解决类名冲突？</p>
+<p>在Java中，我们使用package来解决名字冲突。</p>
+<p>Java定义了一种名字空间，称之为包：package。一个类总是属于某个包，类名（比如Person）只是一个简写，真正的完整类名是包名.类名。</p>
+<p>例如：</p>
+<p>小明的Person类存放在包ming下面，因此，完整类名是ming.Person；</p>
+<p>小红的Person类存放在包hong下面，因此，完整类名是hong.Person；</p>
+<p>小军的Arrays类存放在包mr.jun下面，因此，完整类名是mr.jun.Arrays；</p>
+<p>JDK的Arrays类存放在包java.util下面，因此，完整类名是java.util.Arrays。</p>
+<p>在定义class的时候，我们需要在第一行声明这个class属于哪个包。</p>
+<p>小明的Person.java文件：</p>
+<p>package ming; // 申明包名ming</p>
+<p>public class Person {<br>}<br>小军的Arrays.java文件：</p>
+<p>package mr.jun; // 申明包名mr.jun</p>
+<p>public class Arrays {<br>}<br>在Java虚拟机执行的时候，JVM只看完整类名，因此，只要包名不同，类就不同。</p>
+<p>包可以是多层结构，用.隔开。例如：java.util。</p>
+<p> 要特别注意：包没有父子关系。java.util和java.util.zip是不同的包，两者没有任何继承关系。<br>没有定义包名的class，它使用的是默认包，非常容易引起名字冲突，因此，不推荐不写包名的做法。</p>
+<p>我们还需要按照包结构把上面的Java文件组织起来。假设以package_sample作为根目录，src作为源码目录，那么所有文件结构就是：</p>
+<p>package_sample<br>└─ src<br>    ├─ hong<br>    │  └─ Person.java<br>    │  ming<br>    │  └─ Person.java<br>    └─ mr<br>       └─ jun<br>          └─ Arrays.java<br>即所有Java文件对应的目录层次要和包的层次一致。</p>
+<p>编译后的.class文件也需要按照包结构存放。如果使用IDE，把编译后的.class文件放到bin目录下，那么，编译的文件结构就是：</p>
+<p>package_sample<br>└─ bin<br>   ├─ hong<br>   │  └─ Person.class<br>   │  ming<br>   │  └─ Person.class<br>   └─ mr<br>      └─ jun<br>         └─ Arrays.class<br>编译的命令相对比较复杂，我们需要在src目录下执行javac命令：</p>
+<p>javac -d ../bin ming/Person.java hong/Person.java mr/jun/Arrays.java<br>在IDE中，会自动根据包结构编译所有Java源码，所以不必担心使用命令行编译的复杂命令。</p>
+<p>包作用域<br>位于同一个包的类，可以访问包作用域的字段和方法。不用public、protected、private修饰的字段和方法就是包作用域。例如，Person类定义在hello包下面：</p>
+<p>package hello;</p>
+<p>public class Person {<br>    // 包作用域:<br>    void hello() {<br>        System.out.println(“Hello!”);<br>    }<br>}<br>Main类也定义在hello包下面：</p>
+<p>package hello;</p>
+<p>public class Main {<br>    public static void main(String[] args) {<br>        Person p = new Person();<br>        p.hello(); // 可以调用，因为Main和Person在同一个包<br>    }<br>}<br>import<br>在一个class中，我们总会引用其他的class。例如，小明的ming.Person类，如果要引用小军的mr.jun.Arrays类，他有三种写法：</p>
+<p>第一种，直接写出完整类名，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Person.java</span></span><br><span class="line"><span class="keyword">package</span> ming;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mr.jun.Arrays arrays = <span class="keyword">new</span> mr.jun.Arrays();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>很显然，每次写完整类名比较痛苦。</p>
+<p>因此，第二种写法是用import语句，导入小军的Arrays，然后写简单类名：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Person.java</span></span><br><span class="line"><span class="keyword">package</span> ming;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入完整类名:</span></span><br><span class="line"><span class="keyword">import</span> mr.jun.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Arrays arrays = <span class="keyword">new</span> Arrays();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在写import的时候，可以使用*，表示把这个包下面的所有class都导入进来（但不包括子包的class）：<code>import mr.jun.*;</code><br>因为在导入了多个包后，很难看出Arrays类属于哪个包。</p>
+<p>还有一种import static的语法，它可以导入可以导入一个类的静态字段和静态方法</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package main;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入System类的所有静态字段和静态方法:</span></span><br><span class="line">import static java.lang.System.*;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void <span class="selector-tag">main</span>(String<span class="selector-attr">[]</span> args) &#123;</span><br><span class="line">        <span class="comment">// 相当于调用System.out.println(…)</span></span><br><span class="line">        out.println(&quot;Hello, world!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>import static很少使用。</p>
+<p>Java编译器最终编译出的.class文件只使用完整类名，因此，在代码中，当编译器遇到一个class名称时：</p>
+<p>如果是完整类名，就直接根据完整类名查找这个class；</p>
+<p>如果是简单类名，按下面的顺序依次查找：</p>
+<p>查找当前package是否存在这个class；</p>
+<p>查找import的包是否包含这个class；</p>
+<p>查找java.lang包是否包含这个class。</p>
+<p>如果按照上面的规则还无法确定类名，则编译报错</p>
+<p>编写class的时候，编译器会自动帮我们做两个import动作：</p>
+<p>默认自动import当前package的其他class；</p>
+<p>默认自动import java.lang.*,自动导入的是java.lang包，但类似java.lang.reflect这些包仍需要手动导入。<br>如果有两个class名称相同，例如，mr.jun.Arrays和java.util.Arrays，那么只能import其中一个，另一个必须写完整类名。</p>
+<p>为了避免名字冲突，我们需要确定唯一的包名。推荐的做法是使用倒置的域名来确保唯一性。例如：</p>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><h5 id="public"><a href="#public" class="headerlink" title="public"></a>public</h5><p>定义为public的class、interface可以被其他任何类访问：</p>
+<h5 id="private"><a href="#private" class="headerlink" title="private"></a>private</h5><p>定义为private的field、method无法被其他类访问：实际上，确切地说，private访问权限被限定在class的内部，而且与方法声明顺序无关。推荐把private方法放到后面，因为public方法定义了类对外提供的功能<br>由于Java支持嵌套类，如果一个类内部还定义了嵌套类，那么，嵌套类拥有访问private的权限：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void <span class="selector-tag">main</span>(String<span class="selector-attr">[]</span> args) &#123;</span><br><span class="line">        Inner i = new Inner();</span><br><span class="line">        i.hi();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// private方法:</span></span><br><span class="line">    private static void hello() &#123;</span><br><span class="line">        System.out.println(&quot;private hello!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 静态内部类:</span></span><br><span class="line">    static class Inner &#123;</span><br><span class="line">        public void hi() &#123;</span><br><span class="line">            Main.hello();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h5><p>protected作用于继承关系。定义为protected的字段和方法可以被子类访问，以及子类的子类：</p>
+<h4 id="package"><a href="#package" class="headerlink" title="package"></a>package</h4><p>最后，包作用域是指一个类允许访问同一个package的没有public、private修饰的class，以及没有public、protected、private修饰的字段和方法。<br>只要在同一个包，就可以访问package权限的class、field和method：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> abc;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 可以访问package权限的类:</span></span><br><span class="line">        Hello h = <span class="keyword">new</span> Hello();</span><br><span class="line">        <span class="comment">// 可以调用package权限的方法:</span></span><br><span class="line">        h.hi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，包名必须完全一致，包没有父子关系，com.apache和com.apache.abc是不同的包。</p>
+<p>作用域<br>阅读: 3485892<br>在Java中，我们经常看到public、protected、private这些修饰符。在Java中，这些修饰符可以用来限定访问作用域。</p>
+<p>public<br>定义为public的class、interface可以被其他任何类访问：</p>
+<p>package abc;</p>
+<p>public class Hello {<br>    public void hi() {<br>    }<br>}<br>上面的Hello是public，因此，可以被其他包的类访问：</p>
+<p>package xyz;</p>
+<p>class Main {<br>    void foo() {<br>        // Main可以访问Hello<br>        Hello h = new Hello();<br>    }<br>}<br>定义为public的field、method可以被其他类访问，前提是首先有访问class的权限：</p>
+<p>package abc;</p>
+<p>public class Hello {<br>    public void hi() {<br>    }<br>}<br>上面的hi()方法是public，可以被其他类调用，前提是首先要能访问Hello类：</p>
+<p>package xyz;</p>
+<p>class Main {<br>    void foo() {<br>        Hello h = new Hello();<br>        h.hi();<br>    }<br>}<br>private<br>定义为private的field、method无法被其他类访问：</p>
+<p>package abc;</p>
+<p>public class Hello {<br>    // 不能被其他类调用:<br>    private void hi() {<br>    }</p>
+<pre><code>public void hello() &#123;
+    this.hi();
+&#125;
+</code></pre>
+<p>}<br>实际上，确切地说，private访问权限被限定在class的内部，而且与方法声明顺序无关。推荐把private方法放到后面，因为public方法定义了类对外提供的功能，阅读代码的时候，应该先关注public方法：</p>
+<p>package abc;</p>
+<p>public class Hello {<br>    public void hello() {<br>        this.hi();<br>    }</p>
+<pre><code>private void hi() &#123;
+&#125;
+</code></pre>
+<p>}<br>由于Java支持嵌套类，如果一个类内部还定义了嵌套类，那么，嵌套类拥有访问private的权限：</p>
+<p>// private<br>public class Main {<br>    public static void main(String[] args) {<br>        Inner i = new Inner();<br>        i.hi();<br>    }</p>
+<pre><code>// private方法:
+private static void hello() &#123;
+    System.out.println(&quot;private hello!&quot;);
+&#125;
+
+// 静态内部类:
+static class Inner &#123;
+    public void hi() &#123;
+        Main.hello();
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p> Run<br>定义在一个class内部的class称为嵌套类（nested class），Java支持好几种嵌套类。</p>
+<p>protected<br>protected作用于继承关系。定义为protected的字段和方法可以被子类访问，以及子类的子类：</p>
+<p>package abc;</p>
+<p>public class Hello {<br>    // protected方法:<br>    protected void hi() {<br>    }<br>}<br>上面的protected方法可以被继承的类访问：</p>
+<p>package xyz;</p>
+<p>class Main extends Hello {<br>    void foo() {<br>        // 可以访问protected方法:<br>        hi();<br>    }<br>}<br>package<br>最后，包作用域是指一个类允许访问同一个package的没有public、private修饰的class，以及没有public、protected、private修饰的字段和方法。</p>
+<p>package abc;<br>// package权限的类:<br>class Hello {<br>    // package权限的方法:<br>    void hi() {<br>    }<br>}<br>只要在同一个包，就可以访问package权限的class、field和method：</p>
+<p>package abc;</p>
+<p>class Main {<br>    void foo() {<br>        // 可以访问package权限的类:<br>        Hello h = new Hello();<br>        // 可以调用package权限的方法:<br>        h.hi();<br>    }<br>}<br>注意，包名必须完全一致，包没有父子关系，com.apache和com.apache.abc是不同的包。</p>
+<h5 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h5><p>在方法内部定义的变量称为局部变量，局部变量作用域从变量声明处开始到对应的块结束。方法参数也是局部变量。</p>
+<p>p</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ackage abc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Hello</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hi</span>(<span class="params">String name</span>)</span> &#123; <span class="comment">// ①</span></span><br><span class="line">        String s = name.toLowerCase(); <span class="comment">// ②</span></span><br><span class="line">        <span class="built_in">int</span> len = s.length(); <span class="comment">// ③</span></span><br><span class="line">        <span class="keyword">if</span> (len &lt; <span class="number">10</span>) &#123; <span class="comment">// ④</span></span><br><span class="line">            <span class="built_in">int</span> p = <span class="number">10</span> - len; <span class="comment">// ⑤</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123; <span class="comment">// ⑥</span></span><br><span class="line">                System.<span class="keyword">out</span>.println(); <span class="comment">// ⑦</span></span><br><span class="line">            &#125; <span class="comment">// ⑧</span></span><br><span class="line">        &#125; <span class="comment">// ⑨</span></span><br><span class="line">    &#125; <span class="comment">// ⑩</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>我们观察上面的hi()方法代码：</p>
+<p>方法参数name是局部变量，它的作用域是整个方法，即①～⑩；</p>
+<p>变量s的作用域是定义处到方法结束，即②～⑩；</p>
+<p>变量len的作用域是定义处到方法结束，即③～⑩；</p>
+<p>变量p的作用域是定义处到if块结束，即⑤～⑨；</p>
+<p>变量i的作用域是for循环，即⑥～⑧。</p>
+<p>使用局部变量时，应该尽可能把局部变量的作用域缩小，尽可能延后声明局部变量。</p>
+<h5 id="final"><a href="#final" class="headerlink" title="final"></a>final</h5><p>用final修饰class可以阻止被继承：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> abc;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 无法被继承:</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> i = t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>用final修饰method可以阻止被子类覆写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Package abc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 无法被覆写:</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>用final修饰field可以阻止被重新赋值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> abc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.n = <span class="number">1</span>; <span class="comment">// error!</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>Java内建的访问权限包括public、protected、private和package权限；</p>
+<p>Java在方法内部定义的变量是局部变量，局部变量的作用域从变量声明开始，到一个块结束；</p>
+<p>final修饰符不是访问权限，它可以修饰class、field和method；</p>
+<p>一个.java文件只能包含一个public类，但可以包含多个非public类。</p>
+<h4 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h4><p>在Java程序中，通常情况下，我们把不同的类组织在不同的包下面，对于一个包下面的类来说，它们是在同一层次，没有父子关系：</p>
+<p>java.lang<br>├── Math<br>├── Runnable<br>├── String<br>└── …<br>还有一种类，它被定义在另一个类的内部，所以称为内部类（Nested Class）。Java的内部类分为好几种，通常情况用得不多，但也需要了解它们是如何使用的。</p>
+<p>Inner Class<br>如果一个类定义在另一个类的内部，这个类就是Inner Class：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Outer &#123;</span><br><span class="line">    class Inner &#123;</span><br><span class="line">        <span class="comment">// 定义了一个Inner Class</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述定义的Outer是一个普通类，而Inner是一个Inner Class，它与普通类有个最大的不同，就是Inner Class的实例不能单独存在，必须依附于一个Outer Class的实例。示例代码如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void <span class="selector-tag">main</span>(String<span class="selector-attr">[]</span> args) &#123;</span><br><span class="line">        Outer outer = new Outer(&quot;Nested&quot;); // 实例化一个Outer</span><br><span class="line">        Outer.Inner inner = outer.new Inner(); // 实例化一个Inner</span><br><span class="line">        inner.hello();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outer &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    Outer(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Inner &#123;</span><br><span class="line">        void hello() &#123;</span><br><span class="line">            System.out.println(&quot;Hello, &quot; + Outer.this.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>观察上述代码，要实例化一个Inner，我们必须首先创建一个Outer的实例，然后，调用Outer实例的new来创建Inner实例：<code>Outer.Inner inner = outer.new Inner();</code></p>
+<h5 id="匿名类"><a href="#匿名类" class="headerlink" title="匿名类"></a>匿名类</h5><p>Anonymous Class<br>还有一种定义Inner Class的方法，它不需要在Outer Class中明确地定义这个Class，而是在方法内部，通过匿名类（Anonymous Class）来定义。示例代码如下</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void <span class="selector-tag">main</span>(String<span class="selector-attr">[]</span> args) &#123;</span><br><span class="line">        Outer outer = new Outer(&quot;Nested&quot;);</span><br><span class="line">        outer.asyncHello();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outer &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    Outer(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void asyncHello() &#123;</span><br><span class="line">        Runnable r = new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                System.out.println(&quot;Hello, &quot; + Outer.this.name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        new Thread(r).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>观察asyncHello()方法，我们在方法内部实例化了一个Runnable。Runnable本身是接口，接口是不能实例化的，所以这里实际上是定义了一个实现了Runnable接口的匿名类，并且通过new实例化该匿名类，然后转型为Runnable。在定义匿名类的时候就必须实例化它，定义匿名类的写法如下</p>
+<p>匿名类和Inner Class一样，可以访问Outer Class的private字段和方法。之所以我们要定义匿名类，是因为在这里我们通常不关心类名，比直接定义Inner Class可以少写很多代码。</p>
+<p>观察Java编译器编译后的.class文件可以发现，Outer类被编译为Outer.class，而匿名类被编译为Outer$1.class。如果有多个匿名类，Java编译器会将每个匿名类依次命名为Outer$1、Outer$2、Outer$3……</p>
+<p>除了接口外，匿名类也完全可以继承自普通类。观察以下代码：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.<span class="keyword">HashMap</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class Main &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; map1 = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; map2 = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;&gt;() &#123;&#125;; <span class="comment">// 匿名类!</span></span><br><span class="line">        <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; map3 = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;&gt;() &#123;</span><br><span class="line">            &#123;</span><br><span class="line">                put(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">                put(<span class="string">&quot;B&quot;</span>, <span class="string">&quot;2&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        System.out.<span class="built_in">println</span>(map3.<span class="built_in">get</span>(<span class="string">&quot;A&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>map1是一个普通的HashMap实例，但map2是一个匿名类实例，只是该匿名类继承自HashMap。map3也是一个继承自HashMap的匿名类实例，并且添加了static代码块来初始化数据。观察编译输出可发现Main$1.class和Main$2.class两个匿名类文件。</p>
+<h5 id="Static-Nested-Class"><a href="#Static-Nested-Class" class="headerlink" title="Static Nested Class"></a>Static Nested Class</h5><p>最后一种内部类和Inner Class类似，但是使用static修饰，称为静态内部类（Static Nested Class）：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Main</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>)</span> &#123;</span><br><span class="line">        Outer.StaticNested sn = <span class="keyword">new</span> Outer.StaticNested();</span><br><span class="line">        sn.hello();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Outer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String NAME = <span class="string">&quot;OUTER&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    Outer(String name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">StaticNested</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">hello</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">&quot;Hello, &quot;</span> + Outer.NAME);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>用static修饰的内部类和Inner Class有很大的不同，它不再依附于Outer的实例，而是一个完全独立的类，因此无法引用Outer.this，但它可以访问Outer的private静态字段和静态方法。如果把StaticNested移到Outer之外，就失去了访问private的权限</p>
+<h4 id="classpath和jar参考"><a href="#classpath和jar参考" class="headerlink" title="classpath和jar参考"></a>classpath和jar<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1260466914339296">参考</a></h4><p>在Java中，我们经常听到classpath这个东西。网上有很多关于“如何设置classpath”的文章，但大部分设置都不靠谱。<br>到底什么是classpath？<br>classpath是JVM用到的一个环境变量，它用来指示JVM如何搜索class。<br>因为Java是编译型语言，源码文件是.java，而编译后的.class文件才是真正可以被JVM执行的字节码。因此，JVM需要知道，如果要加载一个abc.xyz.Hello的类，应该去哪搜索对应的Hello.class文件。<br>所以，classpath就是一组目录的集合，它设置的搜索路径与操作系统相关。例如，在Windows系统上，用;分隔，带空格的目录用””括起来，可能长这样：<br>C:\work\project1\bin;C:\shared;”D:\My Documents\project1\bin”<br>在Linux系统上，用:分隔，可能长这样：</p>
+<p>/usr/shared:/usr/local/bin:/home/liaoxuefeng/bin<br>现在我们假设classpath是.;C:\work\project1\bin;C:\shared，当JVM在加载abc.xyz.Hello这个类时，会依次查找：<br>&lt;当前目录&gt;\abc\xyz\Hello.class<br>C:\work\project1\bin\abc\xyz\Hello.class<br>C:\shared\abc\xyz\Hello.class<br>注意到.代表当前目录。如果JVM在某个路径下找到了对应的class文件，就不再往后继续搜索。如果所有路径下都没有找到，就报错。<br>classpath的设定方法有两种：<br>在系统环境变量中设置classpath环境变量，不推荐；<br>在启动JVM时设置classpath变量，推荐。<br>我们强烈不推荐在系统环境变量中设置classpath，那样会污染整个系统环境。在启动JVM时设置classpath才是推荐的做法。实际上就是给java命令传入-classpath或-cp参数：</p>
+<h4 id="模块概念"><a href="#模块概念" class="headerlink" title="模块概念"></a>模块概念</h4><p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1281795926523938">参考教程</a><br>这一块完全没看懂，等以后 明白了再补充</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># Java学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/01/R-CNN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="R-CNN学习笔记">
+      <i class="fa fa-chevron-left"></i> R-CNN学习笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/07/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="next" title="Java学习笔记（一）">
+      Java学习笔记（一） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0%E7%9A%84%E8%AE%BE%E7%BD%AE%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BD%BF%E7%94%A8%E4%BC%A0%E5%85%A5%E6%95%B0%E7%BB%84%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">可变参数的设置，也可使用传入数组参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%8F%82%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">引用参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD"><span class="nav-number">3.</span> <span class="nav-text">方法重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">4.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E7%BB%A7%E6%89%BF"><span class="nav-number">4.1.</span> <span class="nav-text">阻止继承</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%91%E4%B8%8A%E8%BD%AC%E5%9E%8B"><span class="nav-number">4.2.</span> <span class="nav-text">向上转型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B"><span class="nav-number">4.3.</span> <span class="nav-text">向下转型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%80%81"><span class="nav-number">5.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">抽象方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E6%8A%BD%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="nav-number">6.1.</span> <span class="nav-text">面向抽象编程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-number">7.</span> <span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#default%E6%96%B9%E6%B3%95"><span class="nav-number">7.1.</span> <span class="nav-text">default方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%AD%97%E6%AE%B5%E5%92%8C%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">静态字段和静态方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%AD%97%E6%AE%B5"><span class="nav-number">8.1.</span> <span class="nav-text">静态字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-number">8.2.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E9%9D%99%E6%80%81%E5%AD%97%E6%AE%B5"><span class="nav-number">8.3.</span> <span class="nav-text">接口的静态字段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%85"><span class="nav-number">9.</span> <span class="nav-text">包</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8C%85%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">9.1.</span> <span class="nav-text">包作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#import"><span class="nav-number">9.2.</span> <span class="nav-text">import</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">10.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#public"><span class="nav-number">10.1.</span> <span class="nav-text">public</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#private"><span class="nav-number">10.2.</span> <span class="nav-text">private</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#protected"><span class="nav-number">10.3.</span> <span class="nav-text">protected</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#package"><span class="nav-number">11.</span> <span class="nav-text">package</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">11.1.</span> <span class="nav-text">局部变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#final"><span class="nav-number">11.2.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">11.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-number">12.</span> <span class="nav-text">内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8C%BF%E5%90%8D%E7%B1%BB"><span class="nav-number">12.1.</span> <span class="nav-text">匿名类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Static-Nested-Class"><span class="nav-number">12.2.</span> <span class="nav-text">Static Nested Class</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#classpath%E5%92%8Cjar%E5%8F%82%E8%80%83"><span class="nav-number">13.</span> <span class="nav-text">classpath和jar参考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E6%A6%82%E5%BF%B5"><span class="nav-number">14.</span> <span class="nav-text">模块概念</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">知北</p>
+  <div class="site-description" itemprop="description">于浩歌狂热之际中寒；于天上看见深渊。于一切眼中看见无所有；于无所希望中得救。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">知北</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
